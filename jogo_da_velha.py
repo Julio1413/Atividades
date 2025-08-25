@@ -1,10 +1,10 @@
-#iportando funções (os para limpar a tela e time para calcular o tempo de jogo)
-import os
-import time
+#iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
+import os,time,random
 #listas dos jogadores
 x = []
 o = []
-vez = "  X  "
+if random.randint(1,2)==1: vez = "  X  "
+else: vez = "  O  "
 msg = ''
 #dicionário das casas do jogo
 casas = {str(i): '     ' for i in range(1, 10)}
