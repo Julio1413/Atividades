@@ -1,17 +1,11 @@
-#iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
-import os,time,random
-#listas dos jogadores
-x = []
+import os,time,random#iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
+x = []#listas dos jogadores
 o = []
 if random.randint(1,2)==1: vez = "  X  "
 else: vez = "  O  "
-msg = ''
-#dicionário das casas do jogo
-casas = {str(i): '     ' for i in range(1, 10)}
-#combinações de vitória
-combinacoes_vitoria = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
-#função para mostrar o tabuleiro
-def velha(msg=''):
+casas = {str(i): '     ' for i in range(1, 10)}#dicionário das casas do jogo
+combinacoes_vitoria = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7], [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]#combinações de vitória
+def velha(msg=''):#função para mostrar o tabuleiro
     os.system("cls")
     print(f"|--Jogo-da-velha--|")
     print(f"|=================|")
@@ -21,10 +15,8 @@ def velha(msg=''):
     print(f"|-----+-----+-----|")
     print(f"|{casas['7']}|{casas['8']}|{casas['9']}|")
     print(f"|=================|")
-    if msg:
-        print(msg)
-#função para verificar se alguém venceu e parar o jogo
-def venceu():
+    if msg:print(msg)
+def venceu():#função para verificar se alguém venceu e parar o jogo
     for a, b, c in combinacoes_vitoria:
         if a in x and b in x and c in x:
             velha("X venceu!")
@@ -36,17 +28,13 @@ def venceu():
         velha("Velha!")
         return True
     return False
-#loop principal do jogo
 inicio = time.time()
 while not venceu():
-    velha(msg)
-    #Pedindo a jogada
-    jogada = input(f"{vez.replace(' ','')}, escolha uma casa (1-9): ")
-    #verificando se a jogada é valida
-    if jogada.isnumeric() and 1 <= int(jogada) <= 9:
+    velha(msg='')
+    jogada = input(f"{vez.replace(' ','')}, escolha uma casa (1-9): ")#Pedindo a jogada
+    if jogada.isnumeric() and 1 <= int(jogada) <= 9:#verificando se a jogada é valida
         if int(jogada) in x or int(jogada) in o: msg = "Casa já ocupada! Escolha outra."
-        else:
-            #Trocando a vez e marcando a jogada no tabuleiro
+        else: #Trocando a vez e marcando a jogada no tabuleiro
             if vez == "  X  ":
                 x.append(int(jogada))
                 casas[jogada] = vez
