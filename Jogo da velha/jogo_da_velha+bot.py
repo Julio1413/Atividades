@@ -64,15 +64,15 @@ def v1 (page):
     ),
     ft.Text(f'\n',size=1)]))
     page.update()
-    casa0 = ft.OutlinedButton(' ',on_click=None)
-    casa1 = ft.OutlinedButton(' ',on_click=None)
-    casa2 =  ft.OutlinedButton(' ',on_click=None)
-    casa3 = ft.OutlinedButton(' ',on_click=None)
-    casa4 = ft.OutlinedButton(' ',on_click=None)
-    casa5 = ft.OutlinedButton(' ',on_click=None)
-    casa6 = ft.OutlinedButton(' ',on_click=None)
-    casa7 = ft.OutlinedButton(' ',on_click=None)
-    casa8 = ft.OutlinedButton(' ',on_click=None)
+    casa0 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa1 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa2 =  ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa3 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa4 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa5 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa6 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa7 = ft.OutlinedButton(' ',on_click=None,disabled=False)
+    casa8 = ft.OutlinedButton(' ',on_click=None,disabled=False)
     page.add(
         ft.GridView(
                     expand=True,
