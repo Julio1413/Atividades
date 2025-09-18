@@ -1,10 +1,8 @@
 import os,time,random #iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
 import flet as ft
-x,o = [],[]
-msg = ''
+
 inicio = time.time()
 vez = ' ⭕  ' if random.randint(1, 2) else ' ❌  '
-casas = {str(i): '     ' for i in range(1, 10)}
 combinacoes_vitoria = [
     [1, 2, 3], 
     [4, 5, 6], 
@@ -44,6 +42,9 @@ combinacoes_vitoria = [
 #      else: msg = "❌Jogada inválida! Digite um número de 1 a 9."
 # print(f'⏱️A partida durou {int((time.time() - inicio) // 60)} minuto(s) e {((time.time() - inicio) % 60):.0f} segundo(s).')
 def v1 (page):
+    def iniciar():
+        x,o = [],[]
+        inicio = time.time()
     page.clean()
     page.add(ft.Column(controls=[ft.Container(height=90,
         content=ft.Container(alignment=ft.alignment.bottom_center,
@@ -64,25 +65,34 @@ def v1 (page):
     ),
     ft.Text(f'\n',size=1)]))
     page.update()
-    casa0 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa1 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa2 =  ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa3 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa4 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa5 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa6 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa7 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    casa8 = ft.OutlinedButton(' ',on_click=None,disabled=False)
-    page.add(
-        ft.GridView(
+    casa0 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa1 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa2 =  ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa3 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa4 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa5 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa6 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa7 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    casa8 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
+    page.add(ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
+        ft.Container(
+            width=300,
+            height=300,
+            bgcolor=ft.Colors.with_opacity(0.3,ft.Colors.WHITE),
+            border_radius=ft.border_radius.all(20),
+            padding=ft.padding.all(20),
+            content=ft.Column(alignment=ft.MainAxisAlignment.CENTER,controls=[ft.GridView(
                     expand=True,
                     runs_count=2,
-                    max_extent=150,
+                    max_extent=90,
                     child_aspect_ratio=1,
-                    spacing=20,
-                    run_spacing=20,
+                    spacing=5,
+                    run_spacing=5,
                     controls=[casa0,casa1,casa2,casa3,casa4,casa5,casa6,casa7,casa8]
-                )
+                )])
+        )
+    ])
+        
     )
     
 def bot(page):
