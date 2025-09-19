@@ -20,9 +20,11 @@ def v1 (page):
         v1(page)
         page.update()
     def jogada(casa):
+        nonlocal vez
         (x if vez == "❌" else o).append(int(casa))
-        tabuleiro[int(casa)-1].text = f' {vez} '
-        tabuleiro[int(casa)-1].on_click = None
+        tabuleiro[int(casa)].text = f' {vez} '
+        tabuleiro[int(casa)].on_click = None
+        vez = "⭕" if vez == "❌" else "❌"
         page.update()
     reiniciar_button = ft.ElevatedButton('Reiniciar Jogo',width=300,height=50,bgcolor=ft.Colors.INDIGO,icon=ft.Icons.AUTORENEW_ROUNDED,icon_color=ft.Colors.WHITE,on_click= lambda _: reiniciar(page),style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15)))
     page.clean()
@@ -46,7 +48,15 @@ def v1 (page):
     ft.Text(f'\n',size=1)]))
     page.update()
     tabuleiro=[
-        ft.OutlinedButton(' ',on_click=lambda _: jogada(i), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) for i in range(9)  
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(0), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(1), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(2), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(3), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(4), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(5), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(6), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(7), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(i), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15)))
     ]
     page.add(
         ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
