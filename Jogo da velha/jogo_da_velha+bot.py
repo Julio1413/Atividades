@@ -56,7 +56,7 @@ def v1 (page):
         ft.OutlinedButton(' ',on_click=lambda _: jogada(5), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
         ft.OutlinedButton(' ',on_click=lambda _: jogada(6), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
         ft.OutlinedButton(' ',on_click=lambda _: jogada(7), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))),
-        ft.OutlinedButton(' ',on_click=lambda _: jogada(i), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15)))
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(8), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15)))
     ]
     page.add(
         ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
