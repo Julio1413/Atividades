@@ -13,38 +13,18 @@ combinacoes_vitoria = [
     [1, 5, 9], 
     [3, 5, 7]
 ]  # listas dos jogadores
-# def velha(msg=''):#função para mostrar o tabuleiro
-#     os.system("cls" if os.name == "nt" else "clear")
-#     print(f'|==Jogo=da=Velha==|')
-#     print(f'|{casas['1']}|{casas['2']}|{casas['3']}|')
-#     print(f'|-----+-----+-----|')
-#     print(f'|{casas['4']}|{casas['5']}|{casas['6']}|')
-#     print(f'|-----+-----+-----|')
-#     print(f'|{casas['7']}|{casas['8']}|{casas['9']}|')
-#     print(f'|=================|')
-#     print(msg if msg else '')
-# def venceu():#função para verificar se alguém venceu e parar o jogo
-#     for a, b, c in combinacoes_vitoria:
-#         if (a in x and b in x and c in x) or (a in o and b in o and c in o):
-#             velha(f"{ ('⭕' if vez == ' ❌  ' else '❌')} venceu!")
-#             return True
-#         elif len(x) + len(o) == 9:velha("Velha!")
-#  while not venceu() and len(x) + len(o) < 9:#loop principal do jogo
-#      velha(msg)
-#      jogada = input(f"{vez.replace(' ','')}, escolha uma casa 😉 (1-9): ")#Pedindo a jogada
-#      if jogada.isnumeric() and 1 <= int(jogada) <= 9:#verificando se a jogada é valida
-#          if int(jogada) in x or int(jogada) in o: msg = "⚠️ Casa já ocupada! Escolha outra."
-#          else: #Trocando a vez e marcando a jogada no tabuleiro
-#              (x if vez == " ❌  " else o).append(int(jogada))
-#              casas[jogada] = vez
-#              vez = " ⭕  " if vez == " ❌  " else " ❌  "
-#              msg = ''
-#      else: msg = "❌Jogada inválida! Digite um número de 1 a 9."
-# print(f'⏱️A partida durou {int((time.time() - inicio) // 60)} minuto(s) e {((time.time() - inicio) % 60):.0f} segundo(s).')
 def v1 (page):
-    def iniciar():
-        x,o = [],[]
-        inicio = time.time()
+    x,o=[],[]
+    vez = '⭕' if random.randint(1, 2)==1 else '❌'
+    def reiniciar(page):
+        v1(page)
+        page.update()
+    def jogada(casa):
+        (x if vez == "❌" else o).append(int(casa))
+        tabuleiro[int(casa)-1].text = f' {vez} '
+        tabuleiro[int(casa)-1].on_click = None
+        page.update()
+    reiniciar_button = ft.ElevatedButton('Reiniciar Jogo',width=300,height=50,bgcolor=ft.Colors.INDIGO,icon=ft.Icons.AUTORENEW_ROUNDED,icon_color=ft.Colors.WHITE,on_click= lambda _: reiniciar(page),style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15)))
     page.clean()
     page.add(ft.Column(controls=[ft.Container(height=90,
         content=ft.Container(alignment=ft.alignment.bottom_center,
@@ -65,33 +45,41 @@ def v1 (page):
     ),
     ft.Text(f'\n',size=1)]))
     page.update()
-    casa0 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa1 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa2 =  ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa3 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa4 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa5 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa6 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa7 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    casa8 = ft.OutlinedButton(' ',on_click=None,disabled=True, style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) # cantos retosside=ft.BorderSide(1, "black")))
-    page.add(ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
+    tabuleiro=[
+        ft.OutlinedButton(' ',on_click=lambda _: jogada(i), style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=15))) for i in range(9)  
+    ]
+    page.add(
+        ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
+        ft.Container(
+            width=300,
+            height=60,
+            bgcolor=ft.Colors.with_opacity(0.3,ft.Colors.WHITE),
+            border_radius=ft.border_radius.all(20),
+            padding=ft.padding.all(10),
+            content=ft.Column(alignment=ft.MainAxisAlignment.CENTER,controls=[
+                ft.Text(f'Vez do jogador: {vez}',size=20,weight=ft.FontWeight.BOLD,color=ft.Colors.WHITE)
+                                ])
+        )
+        ]),
+        ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
         ft.Container(
             width=300,
             height=300,
             bgcolor=ft.Colors.with_opacity(0.3,ft.Colors.WHITE),
             border_radius=ft.border_radius.all(20),
             padding=ft.padding.all(20),
-            content=ft.Column(alignment=ft.MainAxisAlignment.CENTER,controls=[ft.GridView(
+            content=ft.Column(alignment=ft.MainAxisAlignment.START,controls=[ft.GridView(
                     expand=True,
                     runs_count=2,
                     max_extent=90,
                     child_aspect_ratio=1,
                     spacing=5,
                     run_spacing=5,
-                    controls=[casa0,casa1,casa2,casa3,casa4,casa5,casa6,casa7,casa8]
+                    controls=[tabuleiro[i] for i in range(9)]
                 )])
         )
-    ])
+    ]),
+        ft.Row(alignment=ft.MainAxisAlignment.CENTER,controls=[reiniciar_button]),
         
     )
     
