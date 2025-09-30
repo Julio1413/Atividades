@@ -2,7 +2,7 @@ import time,random #iportando funções (os para limpar a tela, time para calcul
 import flet as ft
 import edge_tts
 import asyncio
-from playsound import playsound
+from playsound3 import playsound
 inicio = time.time()
 vez = ' ⭕  ' if random.randint(1, 2) else ' ❌  '
 combinacoes_vitoria = [
