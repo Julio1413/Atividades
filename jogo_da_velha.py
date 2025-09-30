@@ -14,6 +14,8 @@ combinacoes_vitoria = [
     [1, 5, 9], 
     [3, 5, 7]
 ]  # listas dos jogadores
+
+
 def velha(msg=''):#função para mostrar o tabuleiro
     os.system("cls" if os.name == "nt" else "clear")
     print(f'|==Jogo=da=Velha==|')

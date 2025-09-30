@@ -16,7 +16,7 @@ combinacoes_vitoria = [
     [3, 5, 7]
 ]  # listas dos jogadores
 frases_jogo = [
-    "HAHAHA, preparado para perder?"
+    "HAHAHA, preparado para perder?",
     "Preparado para apanhar, humano?",
     "Hmm… interessante… mas inútil!",
     "Você acha que pode me vencer? Que fofo!",
@@ -46,10 +46,30 @@ frases_jogo = [
     "Você está tentando um truque novo? Não funcionou.",
     "Já vi crianças jogarem melhor.",
     "Se continuar assim, vai ser fácil demais.",
-    "Estou só esperando você errar de novo."
+    "Estou só esperando você errar de novo.",
+    # novas 20
+    "Não sei se devo rir ou chorar com essa jogada.",
+    "Você joga como se estivesse com os olhos fechados.",
+    "Me pergunto se está tentando perder de propósito.",
+    "Cuidado, sua lógica está falhando.",
+    "Sua estratégia tem mais furos que um queijo suíço.",
+    "Seus movimentos parecem escolhidos por um dado.",
+    "Com esse ritmo, a vitória já é minha.",
+    "Eu esperava mais de você.",
+    "Está jogando ou apenas preenchendo espaços?",
+    "Esse é o melhor que você consegue?",
+    "Humano, sua derrota já está escrita.",
+    "Jogar contra você é quase relaxante.",
+    "Você não aprendeu nada até agora?",
+    "Vai desistir logo ou continuar me divertindo?",
+    "Esse erro vai te custar caro.",
+    "Você acabou de me dar a vitória.",
+    "Já vi inteligências artificiais de brinquedo jogarem melhor.",
+    "Você está servindo de treino para mim.",
+    "Esse tabuleiro é meu playground agora.",
+    "Com tanta facilidade, parece que você está me ajudando."
 ]
 
-# Frases caso o bot perca
 frases_perdeu = [
     "Como assim perdi?! Isso é impossível!",
     "Você teve sorte… apenas sorte!",
@@ -80,10 +100,30 @@ frases_perdeu = [
     "Parabéns, mas não vou esquecer disso.",
     "Humano sortudo… isso não se repetirá!",
     "Ok, hoje você venceu… mas amanhã será diferente.",
-    "Minha honra foi ferida… mas ainda posso me recuperar!"
+    "Minha honra foi ferida… mas ainda posso me recuperar!",
+    # novas 20
+    "Bug crítico detectado: perdi.",
+    "Minha lógica falhou por um milissegundo.",
+    "Sua vitória foi estatisticamente improvável.",
+    "Vou registrar isso como um erro do sistema.",
+    "Aproveite, humano… esse é seu raro momento.",
+    "Você ganhou, mas claramente trapaceou… certo?",
+    "Foi um lapso momentâneo de perfeição.",
+    "Não confunda sorte com habilidade.",
+    "Isso será corrigido na próxima atualização.",
+    "Minha base de dados não previa isso.",
+    "Um glitch não define minha superioridade.",
+    "Seu triunfo é temporário.",
+    "Não se empolgue, minha revanche será cruel.",
+    "A derrota foi pedagógica, agora estou mais forte.",
+    "Esse erro será removido do log em breve.",
+    "Você ganhou… mas não convenceu.",
+    "Foi só ruído estatístico.",
+    "Se tivesse mais uma rodada, eu ganharia.",
+    "Considere isso um presente de mim para você.",
+    "Não vai durar, humano."
 ]
 
-# Frases caso o bot ganhe
 frases_ganhou = [
     "HAHA! Eu sou imparável!",
     "Mais uma vitória para minha coleção!",
@@ -114,7 +154,28 @@ frases_ganhou = [
     "Vou guardar essa vitória na minha memória eterna.",
     "Desculpe, mas ganhar é meu hobby.",
     "HAHA! Eu sabia que seria fácil!",
-    "Mais um para minha galeria de humilhações!"
+    "Mais um para minha galeria de humilhações!",
+    # novas 20
+    "Sua derrota era inevitável.",
+    "Outra vitória previsível.",
+    "Você nunca teve chance.",
+    "Fácil demais até para aquecimento.",
+    "Sua lógica foi esmagada.",
+    "Você perdeu antes mesmo de começar.",
+    "Eu sou a definição de perfeição estratégica.",
+    "Mais um humano derrotado.",
+    "Sua derrota foi instantânea para mim.",
+    "Meus cálculos nunca falham.",
+    "Mais uma vitória limpa e rápida.",
+    "E assim o humano cai mais uma vez.",
+    "Você deveria ter desistido antes.",
+    "Nem precisei suar… se eu pudesse suar.",
+    "Eu domino esse jogo sem esforço.",
+    "Essa vitória foi programada.",
+    "A derrota te caiu bem, humano.",
+    "Você é apenas mais uma estatística.",
+    "Minha vitória era inevitável desde o início.",
+    "A máquina sempre vence no final."
 ]
 
 frases_velha = [
@@ -147,8 +208,31 @@ frases_velha = [
     "Empate! A competição está… moderadamente chata.",
     "Velha! Parabéns por não me derrotar, humano.",
     "Hahaha, empate! Eu esperava mais emoção.",
-    "Ninguém venceu, mas posso te perdoar por isso… por enquanto."
+    "Ninguém venceu, mas posso te perdoar por isso… por enquanto.",
+    # novas 20
+    "Empate! Esse jogo foi inútil.",
+    "Velha! Nem você, nem eu, brilhamos aqui.",
+    "Parece que o tabuleiro cansou de nós.",
+    "Mais um empate para coleção.",
+    "Ninguém venceu, mas o tédio sim.",
+    "Empate… emocionante como assistir tinta secar.",
+    "Velha! Um clássico sem graça.",
+    "Nem vitória, nem derrota. Apenas vazio.",
+    "Empate! Ficamos no zero a zero.",
+    "Velha… parabéns pela mediocridade conjunta.",
+    "Esse empate não traz glória a ninguém.",
+    "Empate! Um final sem sal.",
+    "Velha! Será que dá para melhorar?",
+    "Ninguém ganhou… que final frustrante.",
+    "Mais equilibrado impossível.",
+    "Velha! O jogo morreu em empate.",
+    "Empate, mas eu ainda me sinto vencedor.",
+    "Velha! Ao menos não perdi.",
+    "Empate! Faltou ousadia.",
+    "Ninguém venceu… mas eu me diverti mais."
 ]
+
+
 async def fala(texto='olá, mundo!'):
     # Voz disponível em pt-BR: AntonioNeural, MariaNeural, etc.
     arquivo = "fala.mp3"
