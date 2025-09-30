@@ -176,6 +176,8 @@ frases_ganhou = [
     "Você é apenas mais uma estatística.",
     "Minha vitória era inevitável desde o início.",
     "A máquina sempre vence no final."
+    "Na próxima, tente algo melhor."
+    "parabéns...você moostrou todo seu talento... nenhum!"
 ]
 
 frases_velha = [
