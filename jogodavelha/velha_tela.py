@@ -239,7 +239,7 @@ async def fala(texto='olá, mundo!'):
     # Voz disponível em pt-BR: AntonioNeural, MariaNeural, etc.
     arquivo = "fala.mp3"
     
-    communicate = edge_tts.Communicate(texto, voice="pt-BR-AntonioNeural")
+    communicate = edge_tts.Communicate(texto, voice="pt-BR-AntonioNeural",volume="+100%")
     await communicate.save(arquivo)
     # Reproduz o áudio gerado
     playsound(arquivo)
