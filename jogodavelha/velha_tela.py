@@ -539,10 +539,11 @@ def home(page:ft.Page):
     page.bgcolor=ft.Colors.LIGHT_BLUE
     page.window_width=500
     page.window_height=100
+    page.show_title_bar=False
     
 
     page.add(ft.Column(controls=[ft.Container(height=90,
-        content=ft.Container(alignment=ft.alignment.bottom_center,
+        content=ft.Container(
             padding=ft.padding.only(left=5, right=5,bottom=10),
             blur=(10,10),
             content=ft.Row(
