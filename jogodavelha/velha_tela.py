@@ -47,7 +47,6 @@ frases_jogo = [
     "Já vi crianças jogarem melhor.",
     "Se continuar assim, vai ser fácil demais.",
     "Estou só esperando você errar de novo.",
-    # novas 20
     "Não sei se devo rir ou chorar com essa jogada.",
     "Você joga como se estivesse com os olhos fechados.",
     "Me pergunto se está tentando perder de propósito.",
@@ -101,7 +100,6 @@ frases_perdeu = [
     "Humano sortudo… isso não se repetirá!",
     "Ok, hoje você venceu… mas amanhã será diferente.",
     "Minha honra foi ferida… mas ainda posso me recuperar!",
-    # novas 20
     "Bug crítico detectado: perdi.",
     "Minha lógica falhou por um milissegundo.",
     "Sua vitória foi estatisticamente improvável.",
@@ -155,7 +153,6 @@ frases_ganhou = [
     "Desculpe, mas ganhar é meu hobby.",
     "HAHA! Eu sabia que seria fácil!",
     "Mais um para minha galeria de humilhações!",
-    # novas 20
     "Sua derrota era inevitável.",
     "Outra vitória previsível.",
     "Você nunca teve chance.",
@@ -211,7 +208,6 @@ frases_velha = [
     "Velha! Parabéns por não me derrotar, humano.",
     "Hahaha, empate! Eu esperava mais emoção.",
     "Ninguém venceu, mas posso te perdoar por isso… por enquanto.",
-    # novas 20
     "Empate! Esse jogo foi inútil.",
     "Velha! Nem você, nem eu, brilhamos aqui.",
     "Parece que o tabuleiro cansou de nós.",
@@ -236,12 +232,10 @@ frases_velha = [
 
 
 async def fala(texto='olá, mundo!'):
-    # Voz disponível em pt-BR: AntonioNeural, MariaNeural, etc.
     arquivo = "fala.mp3"
     
     communicate = edge_tts.Communicate(texto, voice="pt-BR-AntonioNeural",volume="+100%")
     await communicate.save(arquivo)
-    # Reproduz o áudio gerado
     playsound(arquivo)
 
 # Executa a função assíncrona
@@ -406,15 +400,14 @@ def bot(page):
             frase = frases_velha[random.randint(0,len(frases_velha))] 
 
         else:
-            # Agora: se foi X que jogou, o bot (⭕) responde
+            # Agora: se foi X que jogou, o bot responde
             if vez == "❌":
-                vez = "⭕"  # muda vez para o bot
+                vez = "⭕"  # muda vez
 
-                # ⚡ Lógica do bot
                 jogada_bot = None
                 casas_livres = [i+1 for i in range(9) if (i+1 not in x and i+1 not in o)]
 
-                # 1. Tentar ganhar
+                # Tentar ganhar
                 for a, b, c in combinacoes_vitoria:
                     jogadas = [a, b, c]
                     if sum(p in o for p in jogadas) == 2:
@@ -423,7 +416,7 @@ def bot(page):
                             jogada_bot = livre[0]
                             break
 
-                # 2. Tentar bloquear o jogador
+                # Tentar bloquear o jogador
                 if not jogada_bot:
                     for a, b, c in combinacoes_vitoria:
                         jogadas = [a, b, c]
@@ -433,11 +426,11 @@ def bot(page):
                                 jogada_bot = livre[0]
                                 break
 
-                # 3. Jogar aleatório se não houver ganho/bloqueio
+                #Jogar aleatório se não houver ganho/bloqueio
                 if not jogada_bot and casas_livres:
                     jogada_bot = random.choice(casas_livres)
 
-                # Faz a jogada do bot
+                # Faz a jogada
                 if jogada_bot:
                     o.append(jogada_bot)
                     tabuleiro[jogada_bot-1].text = " ⭕ "
@@ -460,7 +453,7 @@ def bot(page):
                     page.open(ft.SnackBar(ft.Text('Velha!'), bgcolor=ft.Colors.GREEN))
                     frase = random.choice(frases_velha)
 
-                vez = "❌"  # devolve vez para o humano
+                vez = "❌"  # devolve vez para o player
 
         if frase:
             asyncio.run(fala(frase))
