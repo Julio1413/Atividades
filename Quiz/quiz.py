@@ -14,6 +14,8 @@ print (respostas)
 def resultados(acertos):
     pass
 def main(page: ft.Page):
+    def verificar_resposta():
+        pass
     def acertou():
         pass
     def errou():
@@ -25,6 +27,7 @@ def main(page: ft.Page):
     page.bgcolor = ft.Colors.LIGHT_BLUE
     page.theme_mode = ft.ThemeMode.LIGHT
     page.update()
+    
     
     #Construção da página
     
