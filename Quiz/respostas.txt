@@ -1,52 +1,3 @@
-brasilia
-pedro alvares cabral
-15
-africa
-oceano pacifico
-leonardo da vinci
-h2o
-8
-mercurio
-caes
-russia
-1969
-deodoro da fonseca
-rio amazonas
-54
-miguel de cervantes
-buenos aires
-alan turing
-alemanha
-oxigenio
-25
-60
-japones
-antoine de saint-exupery
-lisboa
-l
-6
-franca
-canguru
-81
-lua
-edvard munch
-metamorfose
-c6h12o6
-bahia
-inventor brasileiro da aviacao
-deserto da antartida
-asia
-william shakespeare
-144
-sistema circulatorio
-366
-charles darwin
-america do sul
-aluminio
-thomas edison
-206
-paris
-fotossintese
 baleia-azul
 celula
 75
@@ -63,7 +14,6 @@ neil armstrong
 ciclo da agua
 oxigenio
 leao
-estribo
 nepal
 madri
 7
@@ -94,7 +44,5 @@ estomago
 berlim
 condensacao
 aluisio azevedo
-sol
 geologia
 europa e asia
-62
