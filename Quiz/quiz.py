@@ -9,6 +9,8 @@ with open('perguntas.txt','r', encoding="utf-8") as file:
 with open('respostas.txt','r', encoding="utf-8") as file:
     respostas_l = file.readlines()
 def editar_perguntas(page):
+    def adicionar_pergunta():
+        pass
     page.clean()
     page.update()
     page.scroll = ft.ScrollMode.AUTO
@@ -19,7 +21,7 @@ def editar_perguntas(page):
             blur=(10,10),
             content=ft.Row(
                 controls=[
-                    ft.Icon(name=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
+                    ft.IconButton(icon=ft.Icons.ARROW_BACK_IOS_ROUNDED, icon_color=ft.Colors.WHITE,icon_size=30,on_click=lambda _: main(page)),
                     ft.Text(
                         value='Editar Quiz.',
                         color=ft.Colors.WHITE,
@@ -39,15 +41,36 @@ def editar_perguntas(page):
         border_radius=ft.BorderRadius(top_left=10, top_right=10, bottom_right=10, bottom_left=10),
         width=page.width,
         content=ft.Column(controls=[
-            ft.Text("Informações:", size=17, weight=ft.FontWeight.BOLD),
-            ft.Text(f'N° de perguntas e respostas: {len(perguntas_l)}', size=16),
+            ft.Row(expand=True,controls=[ft.Text("Informações:", size=17, weight=ft.FontWeight.BOLD)]),
+            ft.Row(expand=True,controls=[ft.Text(f'N° de perguntas e respostas: {len(perguntas_l)}', size=16)])
         ])
     ))
-    def container_pergunta(pergunta,resposta):
-        return
-    for n_linha in range(len(perguntas_l)):
+    def excluir_pergunta(n_linha):
         pass
-    page.update()
+    def container_pergunta(pergunta,resposta,n_linha):
+        return ft.Card(color=ft.Colors.with_opacity(0.5,ft.Colors.WHITE),
+        content=ft.Container(
+            content=ft.Column(
+                [
+                    ft.ListTile(
+                        leading=ft.Icon(ft.Icons.QUESTION_MARK_SHARP,size=22),
+                        title=ft.Text(f"Pergunta N°: {n_linha+1}"),
+                    ),
+                    ft.Text(f'Pergunta: {pergunta.replace("\n","")}',weight=ft.FontWeight.BOLD),
+                    ft.Text(f'Resposta: {resposta.replace("\n","")}'),
+                    ft.Row(
+                        [ft.ElevatedButton(text='Excluir Pergunta',icon=ft.Icons.DELETE_ROUNDED,on_click=lambda _:excluir_pergunta(n_linha),icon_color=ft.Colors.RED,bgcolor=ft.Colors.TRANSPARENT)],
+                        alignment=ft.MainAxisAlignment.END,
+                    ),
+                ]
+            ),
+            width=400,
+            padding=10,
+        )
+    )
+    for n_linha in range(len(perguntas_l)):
+        page.add(container_pergunta(perguntas_l[n_linha],respostas_l[n_linha],n_linha))
+        page.update()
     
     
     
@@ -80,6 +103,7 @@ def perguntas(page):
     page.update()
     
 def main(page: ft.Page):
+    page.clean()
     page.title = "Quiz 6X2"
     page.bgcolor = ft.Colors.LIGHT_BLUE
     page.theme_mode = ft.ThemeMode.LIGHT
