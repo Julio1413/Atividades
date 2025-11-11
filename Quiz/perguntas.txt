@@ -1,47 +1,100 @@
-Qual é a unidade básica da vida?
-Qual é o resultado de 15 × 5?
-Quem escreveu “Os Lusíadas”?
-Qual é a capital da Itália?
-Qual é o órgão responsável por bombear o sangue no corpo humano?
-Qual é o nome da galáxia em que vivemos?
-Qual é o nome do polígono que tem cinco lados?
-Quantos estados tem o Brasil?
-Qual é o nome do instrumento usado para medir temperatura?
-Qual é o maior planeta do Sistema Solar?
-Qual é o resultado de 81 ÷ 9?
-Quem foi o primeiro homem a pisar na Lua?
-Qual é o nome do processo de evaporação e condensação da água?
-Qual é o elemento químico representado por O?
-Qual é o animal conhecido como “rei da selva”?
-Em que país se localiza o Monte Everest?
-Qual é a capital da Espanha?
-Quantas cores tem o arco-íris?
-Qual é o nome da ciência que estuda os seres vivos?
-Qual é o continente onde fica o deserto do Saara?
-Qual é o nome do instrumento usado para observar estrelas e planetas?
-Quem foi o autor de “O Príncipe”?
-Qual é a capital do México?
-Qual é o nome do gas que as plantas liberam durante a fotossíntese?
-Quantos lados tem um triângulo?
-Qual é o resultado de 5²?
-Quem pintou “A Última Ceia”?
-Qual é a capital do Canadá?
-Qual é o nome da ciência que estuda o clima?
-Qual é o nome da camada que protege a Terra dos raios ultravioleta?
-Quem foi o autor de “A Divina Comédia”?
-Qual é o nome do maior satélite de Júpiter?
-Quantas sílabas tem a palavra “educação”?
-Qual é o resultado de 10 × 10?
-Quem foi o primeiro imperador de Roma?
-Qual é o nome do processo de passagem do estado líquido para o gasoso?
-Qual é o país mais populoso do mundo?
-Qual é o nome do maior felino das Américas?
-Quem formulou as Leis de Newton?
-Qual é o principal gás do ar atmosférico?
-Qual é o resultado de 64 ÷ 8?
-Qual é o nome do órgão responsável pela digestão dos alimentos?
-Qual é a capital da Alemanha?
-Qual é o nome do processo de formação das nuvens?
-Quem escreveu “O Cortiço”?
-Qual é o nome da ciência que estuda a Terra?
-Em que continente fica a Rússia?
+Quem criou o Python?
+Em que ano o Python foi criado?
+Python é compilado ou interpretado?
+Qual é a extensão usada em arquivos Python?
+Como imprimir algo na tela em Python?
+Qual comando é usado para receber entrada do usuário?
+Como comentar uma linha de código?
+Como criar uma variável chamada nome com o valor 'Julio'?
+Python diferencia letras maiúsculas de minúsculas?
+Como verificar o tipo de uma variável?
+Qual tipo de dado representa números inteiros?
+Qual tipo de dado representa números decimais?
+Qual tipo de dado representa textos?
+Como converter uma string em inteiro?
+Como converter um número em string?
+Como saber o comprimento de uma string?
+Como acessar o primeiro caractere de uma string?
+Qual operador é usado para soma?
+Qual operador é usado para subtração?
+Qual operador é usado para multiplicação?
+Qual operador é usado para divisão normal?
+Qual operador é usado para divisão inteira?
+Qual operador é usado para resto da divisão?
+Qual operador é usado para exponenciação?
+Como criar uma lista vazia?
+Como adicionar um item a uma lista?
+Como remover um item de uma lista?
+Como acessar o primeiro item de uma lista?
+Como contar quantos itens há em uma lista?
+Como ordenar uma lista?
+Como inverter uma lista?
+Como verificar se um item está em uma lista?
+Como criar um dicionário vazio?
+Como adicionar uma chave e valor em um dicionário?
+Como acessar o valor de uma chave em um dicionário?
+Como remover um item de um dicionário?
+Como obter todas as chaves de um dicionário?
+Como obter todos os valores de um dicionário?
+O que é uma tupla?
+Qual a diferença entre lista e tupla?
+Como criar uma tupla com dois elementos?
+Como criar um conjunto (set) em Python?
+Como adicionar um item em um set?
+Como remover um item de um set?
+Qual estrutura não permite elementos repetidos?
+Qual função exibe algo no console?
+Qual função lê dados do usuário?
+Como verificar o tipo de um objeto?
+Qual palavra-chave é usada para criar uma função?
+Como definir uma função chamada saudacao?
+Como retornar um valor de uma função?
+Como criar uma função sem código dentro?
+Qual palavra é usada para criar uma classe?
+Como criar um objeto de uma classe chamada Pessoa?
+Como definir um método dentro de uma classe?
+O que é o parâmetro self?
+Como importar um módulo em Python?
+Como importar apenas uma função de um módulo?
+Como renomear um módulo ao importar?
+Como gerar um número aleatório entre 1 e 10?
+Qual biblioteca é usada para gerar números aleatórios?
+Como pausar a execução por alguns segundos?
+Qual biblioteca é usada para medir o tempo?
+Qual função exibe o comprimento de uma lista?
+Como obter o maior número de uma lista?
+Como obter o menor número de uma lista?
+Como somar todos os itens de uma lista?
+Como verificar se um número é par usando o operador %?
+Como comparar se dois valores são iguais?
+Como verificar se um valor é diferente de outro?
+Qual operador é usado para "maior que"?
+Qual operador é usado para "menor que"?
+Qual operador é usado para "maior ou igual a"?
+Qual operador é usado para "menor ou igual a"?
+Qual operador lógico representa "e"?
+Qual operador lógico representa "ou"?
+Qual operador lógico representa "não"?
+Qual palavra é usada para iniciar um bloco condicional?
+Qual palavra é usada para um caso alternativo?
+Qual palavra é usada quando nenhuma condição é verdadeira?
+Como criar um loop que repete 10 vezes?
+Como criar um loop que percorre uma lista?
+Qual palavra é usada para interromper um loop?
+Qual palavra é usada para pular uma iteração do loop?
+Como criar um loop que nunca termina?
+Qual função gera uma sequência de números?
+Como criar um loop que vai de 1 até 5?
+Como abrir um arquivo para leitura?
+Como abrir um arquivo para escrita?
+Como fechar um arquivo aberto?
+Como ler todas as linhas de um arquivo?
+Como escrever texto em um arquivo?
+Como verificar se um arquivo existe?
+Qual módulo é usado para interagir com o sistema operacional?
+Como obter o diretório atual?
+Como criar uma nova pasta?
+Como remover um arquivo?
+Como remover uma pasta?
+Como verificar o tamanho de um arquivo?
+Como encerrar o programa manualmente?
