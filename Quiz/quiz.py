@@ -10,7 +10,7 @@ with open('perguntas.txt','r', encoding="utf-8") as f:
 with open('respostas.txt','r', encoding="utf-8") as f:
     respostas_l = f.readlines()
     
-def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
+def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,tempo_individual):
     page.add(
             ft.Column(
                 controls=[
@@ -48,6 +48,26 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
                 ]
             )
         )
+    tela_respostas = []
+    for i in range(len(perguntas_jogadas)):
+        indice = perguntas_jogadas[i]
+        tela_respostas.append(ft.Container(
+                expand=True,
+                padding=ft.Padding(top=10,right=10,left=10,bottom=10),
+                bgcolor=ft.Colors.WHITE,
+                border_radius=ft.border_radius.all(16),
+                content=ft.Column(
+                    alignment=ft.MainAxisAlignment.START,
+                    expand=True,
+                    controls=[
+                        ft.Text(f'Pergunta {i+1}: {perguntas_l[indice].strip()}',weight=ft.FontWeight.BOLD),
+                        ft.Text(f'Sua resposta: {perguntas_player[i]}',weight=ft.FontWeight.W_600),
+                        ft.Text(f'Resposta correta: {respostas_l[indice].strip()}',weight=ft.FontWeight.W_600),
+                        ft.Text(f'Resultado: {"✅ Acertou!" if acertos_l[i]==1 else "❌ Errou!"}',weight=ft.FontWeight.W_600,color=ft.Colors.GREEN if acertos_l[i]==1 else ft.Colors.RED),
+                        ft.Text(f'Tempo: {int(tempo_individual[i] // 60)} minuto(s) e {(tempo_individual[i] % 60):.0f} segundo(s)',weight=ft.FontWeight.W_600),
+                        ft.Divider(),
+                    ]
+                )))
     page.add(
         ft.Container(
             expand=True,
@@ -55,6 +75,7 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
             bgcolor=ft.Colors.WHITE,
             border_radius=ft.border_radius.all(16),
             content=ft.Column(
+                scroll=ft.ScrollMode.ALWAYS,
                 alignment=ft.MainAxisAlignment.START,
                 expand=True,
                 controls=[
@@ -62,7 +83,14 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
                     ft.Text('Extatísticas',weight=ft.FontWeight.BOLD,size=20),
                     ft.Divider(),
                     ft.Text(f'Acertos: {acertos_l.count(1)}/{len(perguntas_jogadas)}',weight=ft.FontWeight.W_600),
-                    ft.Text(f'Tempo total: {int((tempo-time.time()) // 60)} minuto(s) e {((time.time() - tempo) % 60):.0f}',weight=ft.FontWeight.W_600),
+                    ft.Text(f'Tempo total: {int(tempo // 60)} minuto(s) e {(tempo % 60):.0f} segundo(s)',weight=ft.FontWeight.W_600),
+                    ft.Divider(),
+                    ft.ExpansionTile(
+                        title=ft.Text("Perguntas e respostas detalhadas",weight=ft.FontWeight.BOLD,size=16),
+                        affinity=ft.TileAffinity.LEADING,
+                        initially_expanded=False,
+                        controls=tela_respostas,
+                    ),
                 ]
             )
         )
@@ -70,7 +98,6 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
 
     
 def perguntas(page, quantidade_perguntas):
-    tempo = time.time()
     time.sleep(0.05)
     n_perguntas_jogadas = 1
     barra_progresso = ft.ProgressBar(
@@ -81,6 +108,8 @@ def perguntas(page, quantidade_perguntas):
         color=ft.Colors.BLUE_ACCENT_700,
         value=n_perguntas_jogadas / quantidade_perguntas
     )
+    tempo = time.time()
+    tempo_individual = []
     acertos_l = []
     perguntas_jogadas = []
     perguntas_player = []
@@ -171,7 +200,7 @@ def perguntas(page, quantidade_perguntas):
             barra_progresso.value = n_perguntas_jogadas / quantidade_perguntas
             page.update()
 
-            if semelhanca >= 0.75:
+            if semelhanca >= 0.55:
                 acertos_l.append(1)
                 page.open(ft.SnackBar(ft.Text("Resposta correta!"), bgcolor=ft.Colors.GREEN))
             else:
@@ -184,7 +213,7 @@ def perguntas(page, quantidade_perguntas):
                 exibir_pergunta(n_perguntas_jogadas)
             else:
                 page.clean()
-                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,time.time() - tempo)
+                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,time.time() - tempo,tempo_individual)
                 page.update()
 
         page.add(
@@ -222,10 +251,14 @@ def editar_perguntas(page):
     def save_files():
         # Salva as perguntas e respostas
         # salva as listas atuais nos arquivos para persistência
-        with open('perguntas.txt', 'w', encoding='utf-8') as f:
-            f.writelines(perguntas_l)
-        with open('respostas.txt', 'w', encoding='utf-8') as f:
-            f.writelines(respostas_l)
+        if len(perguntas_l) ==50:
+            page.open(ft.SnackBar(content=ft.Text('Número máximo de perguntas atingido (50)!'),bgcolor=ft.Colors.RED))
+            page.update()
+        else:
+            with open('perguntas.txt', 'w', encoding='utf-8') as f:
+                f.writelines(perguntas_l)
+            with open('respostas.txt', 'w', encoding='utf-8') as f:
+                f.writelines(respostas_l)
 
     def excluir_pergunta(n_linha):
         # Exclui uma pergunta

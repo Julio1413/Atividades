@@ -1,10 +1,10 @@
-import time,random #iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
+import time,random,edge_tts,asyncio #iportando funções (os para limpar a tela, time para calcular o tempo de jogo e random para o jogador aleatório)
 import flet as ft
-import edge_tts
-import asyncio
 from playsound3 import playsound
 inicio = time.time()
 vez = ' ⭕  ' if random.randint(1, 2) else ' ❌  '
+
+
 combinacoes_vitoria = [
     [1, 2, 3], 
     [4, 5, 6], 
@@ -596,3 +596,17 @@ def home(page:ft.Page):
     )
     page.update()
 ft.app(target=home)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Error404 / ANS
