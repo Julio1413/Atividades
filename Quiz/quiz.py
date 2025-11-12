@@ -10,7 +10,7 @@ with open('perguntas.txt','r', encoding="utf-8") as f:
 with open('respostas.txt','r', encoding="utf-8") as f:
     respostas_l = f.readlines()
     
-def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player):
+def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
     page.add(
             ft.Column(
                 controls=[
@@ -165,7 +165,7 @@ def perguntas(page, quantidade_perguntas):
                 exibir_pergunta(n_perguntas_jogadas)
             else:
                 page.clean()
-                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player)
+                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,time.time() - tempo)
                 page.update()
 
         page.add(
