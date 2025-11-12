@@ -47,4 +47,3 @@ Qual função exibe algo no console?
 Qual função lê dados do usuário?
 Como verificar o tipo de um objeto?
 Qual palavra-chave é usada para criar uma função?
-Como definir uma função chamada saudacao?

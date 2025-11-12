@@ -47,4 +47,3 @@ print()
 input()
 type()
 def
-def saudacao():

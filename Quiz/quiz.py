@@ -48,6 +48,25 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo):
                 ]
             )
         )
+    page.add(
+        ft.Container(
+            expand=True,
+            padding=ft.Padding(top=15,right=15,left=15,bottom=15),
+            bgcolor=ft.Colors.WHITE,
+            border_radius=ft.border_radius.all(16),
+            content=ft.Column(
+                alignment=ft.MainAxisAlignment.START,
+                expand=True,
+                controls=[
+                    #Título
+                    ft.Text('Extatísticas',weight=ft.FontWeight.BOLD,size=20),
+                    ft.Divider(),
+                    ft.Text(f'Acertos: {acertos_l.count(1)}/{len(perguntas_jogadas)}',weight=ft.FontWeight.W_600),
+                    ft.Text(f'Tempo total: {int((tempo-time.time()) // 60)} minuto(s) e {((time.time() - tempo) % 60):.0f}',weight=ft.FontWeight.W_600),
+                ]
+            )
+        )
+    )
 
     
 def perguntas(page, quantidade_perguntas):
