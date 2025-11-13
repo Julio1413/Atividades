@@ -5,9 +5,7 @@ Qual é a extensão usada em arquivos Python?
 Como imprimir algo na tela em Python?
 Qual comando é usado para receber entrada do usuário?
 Como comentar uma linha de código?
-Como criar uma variável chamada nome com o valor 'Julio'?
 Python diferencia letras maiúsculas de minúsculas?
-Como verificar o tipo de uma variável?
 Qual tipo de dado representa números inteiros?
 Qual tipo de dado representa números decimais?
 Qual tipo de dado representa textos?
@@ -31,9 +29,7 @@ Como ordenar uma lista?
 Como inverter uma lista?
 Como verificar se um item está em uma lista?
 Como criar um dicionário vazio?
-Como adicionar uma chave e valor em um dicionário?
 Como acessar o valor de uma chave em um dicionário?
-Como remover um item de um dicionário?
 Como obter todas as chaves de um dicionário?
 Como obter todos os valores de um dicionário?
 O que é uma tupla?
@@ -47,3 +43,7 @@ Qual função exibe algo no console?
 Qual função lê dados do usuário?
 Como verificar o tipo de um objeto?
 Qual palavra-chave é usada para criar uma função?
+
+Teste
+
+add

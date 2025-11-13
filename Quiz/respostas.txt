@@ -5,9 +5,7 @@ Interpretado
 print()
 input()
 #
-nome = 'Julio'
 Sim
-type()
 int
 float
 str
@@ -31,9 +29,7 @@ sort()
 reverse()
 in
 {}
-dicionario["chave"] = "valor"
 dicionario["chave"]
-del dicionario["chave"]
 keys()
 values()
 Uma coleção imutável
@@ -47,3 +43,7 @@ print()
 input()
 type()
 def
+
+Testado
+
+add
