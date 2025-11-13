@@ -1,6 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Guido van Rossum1991Interpretado.pyprint()input()#Simintfloatstrint()str()len()texto[0]+-*///%**[]append()remove()lista[0]len()sort()reverse()in{}dicionario["chave"]keys()values()Uma coleção imutávelA lista é mutável e a tupla não(1, 2)set()add()remove()setprint()input()type()defUm tratadoaaaaaaaaaaaaa
 =======
+=======
+>>>>>>> parent of 84ea3c9 ((+))
 Guido van Rossum
 1991
 Interpretado
@@ -49,5 +52,9 @@ set
 print()
 input()
 type()
+<<<<<<< HEAD
+def
+>>>>>>> parent of 84ea3c9 ((+))
+=======
 def
 >>>>>>> parent of 84ea3c9 ((+))

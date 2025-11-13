@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 Quem criou o Python?
 Em que ano o Python foi criado?
 Python é compilado ou interpretado?
@@ -48,6 +49,8 @@ O que é o tratado de tordesilhas?
 
 aaaaaaaaaaaaa
 =======
+=======
+>>>>>>> parent of 84ea3c9 ((+))
 Quem criou o Python?
 Em que ano o Python foi criado?
 Python é compilado ou interpretado?
@@ -96,5 +99,9 @@ Qual estrutura não permite elementos repetidos?
 Qual função exibe algo no console?
 Qual função lê dados do usuário?
 Como verificar o tipo de um objeto?
+<<<<<<< HEAD
+Qual palavra-chave é usada para criar uma função?
+>>>>>>> parent of 84ea3c9 ((+))
+=======
 Qual palavra-chave é usada para criar uma função?
 >>>>>>> parent of 84ea3c9 ((+))

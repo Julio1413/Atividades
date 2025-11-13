@@ -8,16 +8,12 @@ from difflib import SequenceMatcher
 with open('perguntas.txt','r', encoding="utf-8") as f:
     perguntas_l = f.readlines()
 with open('respostas.txt','r', encoding="utf-8") as f:
-    respostas_l = f.readlines()
-<<<<<<< HEAD
+    respostas_l = f.readlines(
 respostas_l = [resposta.replace('\n','') for resposta in respostas_l]
 perguntas_l = [pergunta if pergunta.endswith('\n') else pergunta+'\n' for pergunta in perguntas_l]
 print(perguntas_l)
 print(respostas_l)
 
-=======
-    
->>>>>>> parent of 84ea3c9 ((+))
 def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,tempo_individual):
     page.add(
             ft.Column(
