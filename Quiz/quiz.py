@@ -11,6 +11,8 @@ with open('perguntas.txt','r', encoding="utf-8") as f:
     perguntas_l = f.readlines()
 with open('respostas.txt','r', encoding="utf-8") as f:
     respostas_l = f.readlines()
+respostas_l = [resposta.replace('\n','') for resposta in respostas_l]
+perguntas_l = [pergunta if pergunta.endswith('\n') else pergunta+'\n' for pergunta in perguntas_l]
 print(perguntas_l)
 print(respostas_l)
 
@@ -381,6 +383,9 @@ def editar_perguntas(page):
 
     def container_pergunta(pergunta,resposta,n_linha):
         # Mostra uma pergunta na tela
+        # sanitize strings outside of f-string expressions to avoid backslashes inside braces
+        safe_pergunta = pergunta.replace("\n", " ")
+        safe_resposta = resposta.replace("\n", " ")
         return ft.Card(color=ft.Colors.with_opacity(0.5,ft.Colors.WHITE),width=page.width,
         content=ft.Container(
             content=ft.Column(
@@ -389,8 +394,8 @@ def editar_perguntas(page):
                         leading=ft.Icon(ft.Icons.ABC_ROUNDED,size=40,color=ft.Colors.BLUE_900),
                         title=ft.Text(f"Pergunta N°: {n_linha+1}",weight=ft.FontWeight.W_900),
                     ),
-                    ft.Text(f'Pergunta: {pergunta.replace("\n","")}',weight=ft.FontWeight.BOLD),
-                    ft.Text(f'Resposta: {resposta.replace("\n","")}'),
+                    ft.Text(value=f'Pergunta: {safe_pergunta}'),
+                    ft.Text(value=f'Resposta: {safe_resposta}'),
                     ft.Row(
                         [ft.ElevatedButton(text='Excluir Pergunta',icon=ft.Icons.DELETE_ROUNDED,on_click=lambda e, i=n_linha: excluir_pergunta(i),icon_color=ft.Colors.RED,bgcolor=ft.Colors.TRANSPARENT)],
                         alignment=ft.MainAxisAlignment.END,
