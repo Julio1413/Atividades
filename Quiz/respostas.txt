@@ -1,1 +1,53 @@
+<<<<<<< HEAD
 Guido van Rossum1991Interpretado.pyprint()input()#Simintfloatstrint()str()len()texto[0]+-*///%**[]append()remove()lista[0]len()sort()reverse()in{}dicionario["chave"]keys()values()Uma coleção imutávelA lista é mutável e a tupla não(1, 2)set()add()remove()setprint()input()type()defUm tratadoaaaaaaaaaaaaa
+=======
+Guido van Rossum
+1991
+Interpretado
+.py
+print()
+input()
+#
+nome = 'Julio'
+Sim
+type()
+int
+float
+str
+int()
+str()
+len()
+texto[0]
++
+-
+*
+/
+//
+%
+**
+[]
+append()
+remove()
+lista[0]
+len()
+sort()
+reverse()
+in
+{}
+dicionario["chave"] = "valor"
+dicionario["chave"]
+del dicionario["chave"]
+keys()
+values()
+Uma coleção imutável
+A lista é mutável e a tupla não
+(1, 2)
+set()
+add()
+remove()
+set
+print()
+input()
+type()
+def
+>>>>>>> parent of 84ea3c9 ((+))

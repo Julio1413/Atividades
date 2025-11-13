@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 Quem criou o Python?
 Em que ano o Python foi criado?
 Python é compilado ou interpretado?
@@ -46,3 +47,54 @@ Qual palavra-chave é usada para criar uma função?
 O que é o tratado de tordesilhas?
 
 aaaaaaaaaaaaa
+=======
+Quem criou o Python?
+Em que ano o Python foi criado?
+Python é compilado ou interpretado?
+Qual é a extensão usada em arquivos Python?
+Como imprimir algo na tela em Python?
+Qual comando é usado para receber entrada do usuário?
+Como comentar uma linha de código?
+Como criar uma variável chamada nome com o valor 'Julio'?
+Python diferencia letras maiúsculas de minúsculas?
+Como verificar o tipo de uma variável?
+Qual tipo de dado representa números inteiros?
+Qual tipo de dado representa números decimais?
+Qual tipo de dado representa textos?
+Como converter uma string em inteiro?
+Como converter um número em string?
+Como saber o comprimento de uma string?
+Como acessar o primeiro caractere de uma string?
+Qual operador é usado para soma?
+Qual operador é usado para subtração?
+Qual operador é usado para multiplicação?
+Qual operador é usado para divisão normal?
+Qual operador é usado para divisão inteira?
+Qual operador é usado para resto da divisão?
+Qual operador é usado para exponenciação?
+Como criar uma lista vazia?
+Como adicionar um item a uma lista?
+Como remover um item de uma lista?
+Como acessar o primeiro item de uma lista?
+Como contar quantos itens há em uma lista?
+Como ordenar uma lista?
+Como inverter uma lista?
+Como verificar se um item está em uma lista?
+Como criar um dicionário vazio?
+Como adicionar uma chave e valor em um dicionário?
+Como acessar o valor de uma chave em um dicionário?
+Como remover um item de um dicionário?
+Como obter todas as chaves de um dicionário?
+Como obter todos os valores de um dicionário?
+O que é uma tupla?
+Qual a diferença entre lista e tupla?
+Como criar uma tupla com dois elementos?
+Como criar um conjunto (set) em Python?
+Como adicionar um item em um set?
+Como remover um item de um set?
+Qual estrutura não permite elementos repetidos?
+Qual função exibe algo no console?
+Qual função lê dados do usuário?
+Como verificar o tipo de um objeto?
+Qual palavra-chave é usada para criar uma função?
+>>>>>>> parent of 84ea3c9 ((+))
