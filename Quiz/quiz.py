@@ -1,20 +1,21 @@
 import flet as ft
 import os
 import random
-import time
-import playsound3
+from time import sleep, time
+from playsound3 import playsound
+from edge_tts import Communicate
+from asyncio import run
 from difflib import SequenceMatcher
 
 with open('perguntas.txt','r', encoding="utf-8") as f:
     perguntas_l = f.readlines()
 with open('respostas.txt','r', encoding="utf-8") as f:
-    respostas_l = f.readlines(
-respostas_l = [resposta.replace('\n','') for resposta in respostas_l]
-perguntas_l = [pergunta if pergunta.endswith('\n') else pergunta+'\n' for pergunta in perguntas_l]
+    respostas_l = f.readlines()
 print(perguntas_l)
 print(respostas_l)
 
 def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,tempo_individual):
+    print(tempo_individual)
     page.add(
             ft.Column(
                 controls=[
@@ -101,8 +102,14 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,te
     )
 
     
-def perguntas(page, quantidade_perguntas):
-    time.sleep(0.05)
+def perguntas(page, quantidade_perguntas,permissao_voz):
+    async def som(texto):
+        audio_tts = Communicate(texto, "pt-BR-AntonioNeural")
+        arquivo = "temp_audio.mp3"
+        await audio_tts.save(arquivo)
+        playsound(arquivo)
+        os.remove(arquivo)
+    sleep(0.05)
     n_perguntas_jogadas = 1
     barra_progresso = ft.ProgressBar(
         border_radius=ft.border_radius.all(10),
@@ -112,7 +119,7 @@ def perguntas(page, quantidade_perguntas):
         color=ft.Colors.BLUE_ACCENT_700,
         value=n_perguntas_jogadas / quantidade_perguntas
     )
-    tempo = time.time()
+    tempo = time()
     tempo_individual = []
     acertos_l = []
     perguntas_jogadas = []
@@ -129,6 +136,8 @@ def perguntas(page, quantidade_perguntas):
 
         indice_selecionado = retornar_indice()
         perguntas_jogadas.append(indice_selecionado)
+
+        inicio_quiz = time()
 
         page.clean()
         page.scrollable = ft.ScrollMode.ALWAYS
@@ -195,14 +204,14 @@ def perguntas(page, quantidade_perguntas):
 
         resposta_tela = ft.TextField(label="Resposta:", border_color=ft.Colors.TRANSPARENT,expand=True)
 
+
         def verificar_resposta(resposta):
             nonlocal n_perguntas_jogadas
-
             semelhanca = SequenceMatcher(None, respostas_l[indice_selecionado].replace('\n','').lower(), resposta.replace('\n','').lower()).ratio()
             print(semelhanca)
-            n_perguntas_jogadas += 1
-            barra_progresso.value = n_perguntas_jogadas / quantidade_perguntas
-            page.update()
+
+            tempo_i = time() - inicio_quiz
+            tempo_individual.append(tempo_i)
 
             if semelhanca >= 0.55:
                 acertos_l.append(1)
@@ -210,14 +219,20 @@ def perguntas(page, quantidade_perguntas):
             else:
                 acertos_l.append(0)
                 page.open(ft.SnackBar(ft.Text("Resposta incorreta!"), bgcolor=ft.Colors.RED))
+
             perguntas_player.append(resposta)
+
+            # Atualiza contador e barra de progresso depois de registrar a resposta
+            n_perguntas_jogadas += 1
+            barra_progresso.value = n_perguntas_jogadas / quantidade_perguntas
+            page.update()
 
             # Avança para a próxima pergunta
             if n_perguntas_jogadas <= quantidade_perguntas:
                 exibir_pergunta(n_perguntas_jogadas)
             else:
                 page.clean()
-                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,time.time() - tempo,tempo_individual)
+                exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,time() - tempo,tempo_individual)
                 page.update()
 
         page.add(
@@ -246,6 +261,7 @@ def perguntas(page, quantidade_perguntas):
                 ),
             )
         )
+        if permissao_voz:run(som(perguntas_l[indice_selecionado].replace('\n','')))
 
     # Mostra a primeira pergunta
     exibir_pergunta(1)
@@ -255,14 +271,11 @@ def editar_perguntas(page):
     def save_files():
         # Salva as perguntas e respostas
         # salva as listas atuais nos arquivos para persistência
-        if len(perguntas_l) ==50:
-            page.open(ft.SnackBar(content=ft.Text('Número máximo de perguntas atingido (50)!'),bgcolor=ft.Colors.RED))
-            page.update()
-        else:
-            with open('perguntas.txt', 'w', encoding='utf-8') as f:
-                f.writelines(perguntas_l)
-            with open('respostas.txt', 'w', encoding='utf-8') as f:
-                f.writelines(respostas_l)
+        
+        with open('perguntas.txt', 'w', encoding='utf-8') as f:
+            f.writelines(perguntas_l)
+        with open('respostas.txt', 'w', encoding='utf-8') as f:
+            f.writelines(respostas_l)
 
     def excluir_pergunta(n_linha):
         # Exclui uma pergunta
@@ -288,12 +301,16 @@ def editar_perguntas(page):
             pergunta = nova_pergunta.value.strip()
             resposta = nova_resposta.value.strip()
             if pergunta and resposta:
-                perguntas_l.append(f'{pergunta}\n')
-                respostas_l.append(f'{resposta}\n')
-                close_dlg()
-                save_files()
-                editar_perguntas(page)
-                page.update()
+                if len(perguntas_l) ==50:
+                    page.open(ft.SnackBar(content=ft.Text('Número máximo de perguntas atingido (50)!'),bgcolor=ft.Colors.RED))
+                    page.update()
+                else:
+                    perguntas_l.append(f'\n{pergunta}')
+                    respostas_l.append(f'\n{resposta}')
+                    close_dlg()
+                    save_files()
+                    editar_perguntas(page)
+                    page.update()
             else:
                 page.open(ft.SnackBar(content=ft.Text('Preencha todos os campos!'),bgcolor=ft.Colors.RED))
                 page.update()
@@ -364,9 +381,6 @@ def editar_perguntas(page):
 
     def container_pergunta(pergunta,resposta,n_linha):
         # Mostra uma pergunta na tela
-        # sanitize strings outside of f-string expressions to avoid backslashes inside braces
-        safe_pergunta = pergunta.replace("\n", " ")
-        safe_resposta = resposta.replace("\n", " ")
         return ft.Card(color=ft.Colors.with_opacity(0.5,ft.Colors.WHITE),width=page.width,
         content=ft.Container(
             content=ft.Column(
@@ -375,8 +389,8 @@ def editar_perguntas(page):
                         leading=ft.Icon(ft.Icons.ABC_ROUNDED,size=40,color=ft.Colors.BLUE_900),
                         title=ft.Text(f"Pergunta N°: {n_linha+1}",weight=ft.FontWeight.W_900),
                     ),
-                    ft.Text(value=f'Pergunta: {safe_pergunta}'),
-                    ft.Text(value=f'Resposta: {safe_resposta}'),
+                    ft.Text(f'Pergunta: {pergunta.replace("\n","")}',weight=ft.FontWeight.BOLD),
+                    ft.Text(f'Resposta: {resposta.replace("\n","")}'),
                     ft.Row(
                         [ft.ElevatedButton(text='Excluir Pergunta',icon=ft.Icons.DELETE_ROUNDED,on_click=lambda e, i=n_linha: excluir_pergunta(i),icon_color=ft.Colors.RED,bgcolor=ft.Colors.TRANSPARENT)],
                         alignment=ft.MainAxisAlignment.END,
@@ -408,6 +422,8 @@ def main(page: ft.Page):
         
         # Elementos do Dialog
         quantidade_perguntas = ft.TextField(label='Quantidade de perguntas:',value=10)
+        permissao_voz = ft.Checkbox(label="Ler perguntas em voz alta", value=True)
+        
         
         
         def fechar_dlg(e=None):
@@ -421,7 +437,7 @@ def main(page: ft.Page):
                 dlg.open = False
                 page.open(ft.SnackBar(content=ft.Text(f'Iniciando quiz com {num_perguntas} perguntas...'),bgcolor=ft.Colors.GREEN))
                 fechar_dlg()
-                perguntas(page, num_perguntas)
+                perguntas(page, num_perguntas,permissao_voz.value)
                 page.update()
             else:
                 page.open(ft.SnackBar(content=ft.Text(f'Insira um número válido entre 1 e {len(perguntas_l)}!'),bgcolor=ft.Colors.RED))
@@ -433,6 +449,7 @@ def main(page: ft.Page):
             content=ft.Column(
                 controls=[
                     quantidade_perguntas,
+                    permissao_voz,
                     ft.Row(alignment=ft.MainAxisAlignment.CENTER,controls=[ft.Image(width=300,height=300,src='https://i.pinimg.com/736x/12/d3/fd/12d3fd7fb251029749a0ae762159f21b.jpg',expand=True,border_radius=ft.border_radius.all(10))])
                     
                 ]
