@@ -1,7 +1,6 @@
 Quem criou o Python?
 Em que ano o Python foi criado?
 Python é compilado ou interpretado?
-Qual é a extensão usada em arquivos Python?
 Como imprimir algo na tela em Python?
 Qual comando é usado para receber entrada do usuário?
 Como comentar uma linha de código?
@@ -16,7 +15,6 @@ Como acessar o primeiro caractere de uma string?
 Qual operador é usado para soma?
 Qual operador é usado para subtração?
 Qual operador é usado para multiplicação?
-Qual operador é usado para divisão normal?
 Qual operador é usado para divisão inteira?
 Qual operador é usado para resto da divisão?
 Qual operador é usado para exponenciação?

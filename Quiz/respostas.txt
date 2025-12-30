@@ -1,7 +1,6 @@
 Guido van Rossum
 1991
 Interpretado
-.py
 print()
 input()
 #
@@ -16,7 +15,6 @@ texto[0]
 +
 -
 *
-/
 //
 %
 **
