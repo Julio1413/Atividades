@@ -5,7 +5,6 @@ print()
 input()
 #
 Sim
-int
 float
 str
 int()
@@ -42,5 +41,3 @@ input()
 type()
 def
 ablubleble
-teste
-teste

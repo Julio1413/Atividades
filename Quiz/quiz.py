@@ -6,13 +6,27 @@ from playsound3 import playsound
 from edge_tts import Communicate
 from asyncio import run
 from difflib import SequenceMatcher
-
-with open('perguntas.txt','r', encoding="utf-8") as f:
-    perguntas_l = f.readlines()
-with open('respostas.txt','r', encoding="utf-8") as f:
-    respostas_l = f.readlines()
-print(perguntas_l)
-print(respostas_l)
+if os.path.exists('perguntas.txt') and os.path.exists('respostas.txt'):
+        
+    with open('perguntas.txt','r', encoding="utf-8") as f:
+        perguntas_l = f.readlines()
+    with open('respostas.txt','r', encoding="utf-8") as f:
+        respostas_l = f.readlines()
+else:
+    perguntas_l = [
+        'Qual é a capital da França?\n',
+        'Quem escreveu "Dom Quixote"?\n',
+        'Qual é o maior planeta do nosso sistema solar?\n',
+        'Em que ano o homem pisou na Lua pela primeira vez?\n',
+        'Quem pintou a Mona Lisa\n?'
+    ]
+    respostas_l = [
+        'Paris\n',
+        'Miguel de Cervantes\n',
+        'Júpiter\n',
+        '1969\n',
+        'Leonardo da Vinc\ni'
+    ]
 
 def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,tempo_individual):
     print(tempo_individual)
@@ -22,7 +36,7 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,te
                     ft.Container(
                         height=90,
                         content=ft.Container(
-                            alignment=ft.alignment.bottom_center,
+                            alignment=ft.Alignment.BOTTOM_CENTER,
                             padding=ft.padding.only(left=10, right=10, bottom=10),
                             blur=(10, 10),
                             content=ft.Row(
@@ -40,7 +54,7 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,te
                                         weight=ft.FontWeight.BOLD,
                                     ),
                                     ft.Icon(
-                                        name=ft.Icons.QUIZ_ROUNDED,
+                                        icon=ft.Icons.QUIZ_ROUNDED,
                                         color=ft.Colors.WHITE,
                                         size=30,
                                     ),
@@ -93,7 +107,7 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,te
                     ft.ExpansionTile(
                         title=ft.Text("Perguntas e respostas detalhadas",weight=ft.FontWeight.BOLD,size=16),
                         affinity=ft.TileAffinity.LEADING,
-                        initially_expanded=False,
+                        expanded=False,
                         controls=tela_respostas,
                     ),
                 ]
@@ -104,7 +118,7 @@ def exibir_resultados(page,acertos_l,perguntas_jogadas,perguntas_player,tempo,te
     
 def perguntas(page, quantidade_perguntas,permissao_voz):
     async def som(texto):
-        audio_tts = Communicate(texto, "pt-BR-AntonioNeural")
+        audio_tts = Communicate(text=texto, voice="pt-BR-AntonioNeural")
         arquivo = "temp_audio.mp3"
         await audio_tts.save(arquivo)
         playsound(arquivo)
@@ -148,7 +162,7 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
                     ft.Container(
                         height=90,
                         content=ft.Container(
-                            alignment=ft.alignment.bottom_center,
+                            alignment=ft.Alignment.BOTTOM_CENTER,
                             padding=ft.padding.only(left=10, right=10, bottom=10),
                             blur=(10, 10),
                             content=ft.Row(
@@ -166,7 +180,7 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
                                         weight=ft.FontWeight.BOLD,
                                     ),
                                     ft.Icon(
-                                        name=ft.Icons.QUIZ_ROUNDED,
+                                        icon=ft.Icons.QUIZ_ROUNDED,
                                         color=ft.Colors.WHITE,
                                         size=30,
                                     ),
@@ -193,7 +207,6 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
                     alignment=ft.MainAxisAlignment.CENTER,
                     controls=[
                         ft.Image(
-                            fit=ft.ImageFit.COVER,
                             src="https://i.postimg.cc/YqBv7Rw8/c1495305-3dbd-4261-9199-9f084ffe1f9d.png",
                             border_radius=ft.border_radius.all(10),
                         )
@@ -215,10 +228,10 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
 
             if semelhanca >= 0.55:
                 acertos_l.append(1)
-                page.open(ft.SnackBar(ft.Text("Resposta correta!"), bgcolor=ft.Colors.GREEN))
+                page.show_dialog(ft.SnackBar(ft.Text("Resposta correta!"), bgcolor=ft.Colors.GREEN))
             else:
                 acertos_l.append(0)
-                page.open(ft.SnackBar(ft.Text("Resposta incorreta!"), bgcolor=ft.Colors.RED))
+                page.show_dialog(ft.SnackBar(ft.Text("Resposta incorreta!"), bgcolor=ft.Colors.RED))
 
             perguntas_player.append(resposta)
 
@@ -250,7 +263,7 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
                         resposta_tela,
                         ft.Divider(),
                         ft.ElevatedButton(
-                            text="Enviar Resposta",
+                            content=ft.Text("Enviar Resposta"),
                             icon=ft.Icons.SEND_ROUNDED,
                             on_click=lambda e: verificar_resposta(resposta_tela.value),
                             icon_color=ft.Colors.WHITE,
@@ -261,7 +274,9 @@ def perguntas(page, quantidade_perguntas,permissao_voz):
                 ),
             )
         )
-        if permissao_voz:run(som(perguntas_l[indice_selecionado].replace('\n','')))
+        if permissao_voz:
+            import asyncio
+            asyncio.create_task(som(perguntas_l[indice_selecionado].replace('\n','')))
 
     # Mostra a primeira pergunta
     exibir_pergunta(1)
@@ -342,7 +357,7 @@ def editar_perguntas(page):
         main(page)
     page.add(
         ft.Column(controls=[ft.Container(height=90,
-        content=ft.Container(alignment=ft.alignment.bottom_center,
+        content=ft.Container(alignment=ft.Alignment.BOTTOM_CENTER,
             padding=ft.padding.only(left=10, right=10,bottom=10),
             blur=(10,10),
             content=ft.Row(
@@ -359,7 +374,7 @@ def editar_perguntas(page):
                         size=20,
                         weight=ft.FontWeight.BOLD,
                     ),
-                    ft.Icon(name=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
+                    ft.Icon(icon=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
                 ],
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             ),
@@ -381,7 +396,7 @@ def editar_perguntas(page):
 
     def container_pergunta(pergunta,resposta,n_linha):
         # Mostra uma pergunta na tela
-        return ft.Card(color=ft.Colors.with_opacity(0.5,ft.Colors.WHITE),width=page.width,
+        return ft.Card(bgcolor=ft.Colors.with_opacity(0.5,ft.Colors.WHITE),width=page.width,
         content=ft.Container(
             content=ft.Column(
                 [
@@ -392,7 +407,7 @@ def editar_perguntas(page):
                     ft.Text(f'Pergunta: {pergunta.replace("\n","")}',weight=ft.FontWeight.BOLD),
                     ft.Text(f'Resposta: {resposta.replace("\n","")}'),
                     ft.Row(
-                        [ft.ElevatedButton(text='Excluir Pergunta',icon=ft.Icons.DELETE_ROUNDED,on_click=lambda e, i=n_linha: excluir_pergunta(i),icon_color=ft.Colors.RED,bgcolor=ft.Colors.TRANSPARENT)],
+                        [ft.ElevatedButton(content=ft.Text('Excluir Pergunta'),icon=ft.Icons.DELETE_ROUNDED,on_click=lambda e, i=n_linha: excluir_pergunta(i),icon_color=ft.Colors.RED,bgcolor=ft.Colors.TRANSPARENT)],
                         alignment=ft.MainAxisAlignment.END,
                     ),
                 ]
@@ -435,7 +450,7 @@ def main(page: ft.Page):
             if quantidade_perguntas.value and 1 <= int(quantidade_perguntas.value) <= len(perguntas_l):
                 num_perguntas = int(quantidade_perguntas.value)
                 dlg.open = False
-                page.open(ft.SnackBar(content=ft.Text(f'Iniciando quiz com {num_perguntas} perguntas...'),bgcolor=ft.Colors.GREEN))
+                page.show_dialog(ft.SnackBar(content=ft.Text(f'Iniciando quiz com {num_perguntas} perguntas...'),bgcolor=ft.Colors.GREEN))
                 fechar_dlg()
                 perguntas(page, num_perguntas,permissao_voz.value)
                 page.update()
@@ -461,25 +476,25 @@ def main(page: ft.Page):
             actions_alignment=ft.MainAxisAlignment.END,
         )
 
-        page.open(dlg)
+        page.show_dialog(dlg)
         page.update()
         
         
     page.add(
         ft.Column(controls=[ft.Container(height=90,
-        content=ft.Container(alignment=ft.alignment.bottom_center,
+        content=ft.Container(alignment=ft.Alignment.BOTTOM_CENTER,
             padding=ft.padding.only(left=10, right=10,bottom=10),
             blur=(10,10),
             content=ft.Row(
                 controls=[
-                    ft.Icon(name=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
+                    ft.Icon(icon=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
                     ft.Text(
                         value='Quiz 6X2',
                         color=ft.Colors.WHITE,
                         size=20,
                         weight=ft.FontWeight.BOLD,
                     ),
-                    ft.Icon(name=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
+                    ft.Icon(icon=ft.Icons.QUIZ_ROUNDED, color=ft.Colors.WHITE,size=30),
                 ],
                 alignment=ft.MainAxisAlignment.SPACE_BETWEEN,
             ),
@@ -496,7 +511,7 @@ def main(page: ft.Page):
         style=ft.ButtonStyle(shape=ft.RoundedRectangleBorder(radius=20)),
         content=ft.Column(alignment=ft.MainAxisAlignment.CENTER, controls=[
             ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
-                ft.Icon(name=icon, size=100),
+                ft.Icon(icon=icon, size=100),
                 ]),
             ft.Row(alignment=ft.MainAxisAlignment.CENTER, controls=[
                 ft.Text(texto, size=12, text_align=ft.TextAlign.CENTER)
@@ -523,4 +538,4 @@ def main(page: ft.Page):
         ])
     )
     
-ft.app(target=main)
+ft.run(main)
